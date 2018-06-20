@@ -28,7 +28,7 @@ router.get("/:qID", (req, res) => {
 
 //POST /questions/:qID/answers/:aID
 // Route for creating questions
-router.post("/:qID/answers/:aID", (req, res) => {
+router.post("/:qID/answers", (req, res) => {
   res.json({
     response: "You sent me a POST request to /answers",
     questionId: req.params.qID,
@@ -40,7 +40,7 @@ router.post("/:qID/answers/:aID", (req, res) => {
 // Edit a specific answer
 router.put("/:qID/answers/:aID", (req, res) => {
   res.json({
-    response: "You sent me a POST request to /answers",
+    response: "You sent me a PUT request to /answers",
     questionId: req.params.qID,
     answerID: req.params.aID,
     body: req.body
@@ -65,7 +65,7 @@ router.post("/:qID/answers/:aID/:vote-:dir", (req, res) => {
     response: "You sent me a POST request to /vote-" + req.params.dir,
     questionId: req.params.qID,
     answerID: req.params.aID,
-    vote: req.params.dir 
+    vote: req.params.dir
   });
 });
 
