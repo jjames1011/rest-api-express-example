@@ -3,7 +3,9 @@ var express = require('express');
 var app = express();
 var routes = require("./routes.js");
 var jsonParser = require("body-parser").json;
+var logger = require("morgan");
 
+app.use(logger('dev'));
 app.use(jsonParser());
 
 //only direct routes that start with /questions through our routes.js file
