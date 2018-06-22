@@ -8,6 +8,23 @@ var logger = require("morgan");
 app.use(logger('dev'));
 app.use(jsonParser());
 
+var mongoose = require("mongoose");
+
+//connect to the database
+mongoose.connect("mongodb://localhost:27017/qa");
+
+//create database variable for moethods
+var db = mongoose.connection;
+
+//database error handler:
+db.on("error",(err) => {
+  console.error("connection error:", err);
+});
+
+//open the connection
+db.once("open", () => {
+  console.log("db connection successful");
+});
 //only direct routes that start with /questions through our routes.js file
 app.use("/questions", routes);
 
