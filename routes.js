@@ -1,4 +1,5 @@
 'use strict';
+
 var express = require("express");
 var router = express.Router();
 var Question = require("./models").Question;
@@ -7,7 +8,7 @@ router.param("qID", function(req, res, next,id) {
   Question.findById(id, function(err, doc) {
     if(err) return next(err);
     if(!doc){
-      err new Error("Not Found");
+      var err =  new Error("Not Found");
       err.status = 404;
       return next(err);
     }
@@ -17,9 +18,9 @@ router.param("qID", function(req, res, next,id) {
 });
 
 router.param("aID", function(req, res, next, id) {
-  req.answer = req.question.answer.id(id);
+  req.answer = req.question.answers.id(id);
   if(!req.answer){
-    err new Error("Not Found");
+    var err = new Error("Not Found");
     err.status = 404;
     return next(err);
   }
@@ -53,7 +54,6 @@ router.post("/", (req, res) => {
 router.get("/:qID", (req, res, next) => {
     res.json(req.question);
   });
-});
 
 //POST /questions/:qID/answers/:aID
 // Route for creating questions
@@ -104,5 +104,6 @@ router.post("/:qID/answers/:aID/:vote-:dir",(req, res, next) => {
       res.json(question);
     });
 });
+
 
 module.exports = router;

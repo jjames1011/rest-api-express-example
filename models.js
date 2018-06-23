@@ -22,12 +22,12 @@ var AnswerSchema = new Schema({
 });
 
 //created instance methods example:
-AnswerSchema.method('update' = function(updates, callback){
+AnswerSchema.method('update', function(updates, callback){
   Object.assign(this, updates, {updatedAt: new Date()});
   this.parent().save(callback);
 });
 
-AnswerSchema.method('vote' = function(vote, callback){
+AnswerSchema.method('vote', function(vote, callback){
   if(vote === 'up'){
     this.votes += 1;
   }else {
