@@ -1,6 +1,7 @@
 'use strict';
 var express = require("express");
 var router = express.Router();
+var Question = require("./models").Question;
 
 //GET /questions
 // Return all the questions
