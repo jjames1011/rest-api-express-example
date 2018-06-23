@@ -25,6 +25,16 @@ db.on("error",(err) => {
 db.once("open", () => {
   console.log("db connection successful");
 });
+//allows access to browsers
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Acess-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  if(req.method  === "OPTIONS"){
+    res.header("Access-Control-Allow-Methods", "PUT,POST,DELETE");
+    return res.status(200).json({});
+  }
+  next();
+});
 //only direct routes that start with /questions through our routes.js file
 app.use("/questions", routes);
 
